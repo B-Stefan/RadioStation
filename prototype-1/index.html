@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
     <title>Radio-Station</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.js"></script>
     <style type="text/css">
 
         .center{
             position: absolute;
-            top: 20%;
-            left: 30%;
-            margin-top: -50px;
-            margin-left: -50px;
-            width: 375px;
-            height: 667px;
+            width: 100%;
+            height: 100%;
             background-color: lightgray;
         }​
 
@@ -21,7 +18,7 @@
 </head>
 <body>
     <div class="center">
-        <svg id="canvas" width="667" height="1000">
+        <svg id="canvas">
         </svg>
     </div>
     <script src="src/main.js"></script>
