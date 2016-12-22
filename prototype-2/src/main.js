@@ -1,4 +1,15 @@
-var canvas = Raphael("canvas", 1000, 667);
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    screen_width = w.innerWidth || e.clientWidth || g.clientWidth,
+    screen_height = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+
+
+document.getElementById("canvas").setAttribute("width",screen_width );
+document.getElementById("canvas").setAttribute("height",screen_height);
+var canvas = Raphael("canvas", screen_width, screen_height);
 canvas.customAttributes.arc = function (xloc, yloc, value, total, R) {
   var alpha = 360 / total * value,
       a = (90 - alpha) * Math.PI / 180,
@@ -25,6 +36,7 @@ canvas.customAttributes.after = function(){
 };
 
 
+
 var music_value = 180;
 var news_value = 90;
 var comedy_value = 45;
@@ -36,7 +48,7 @@ var comedy_color = "#ffff00";
 var audiobooks_color = "#BF5FFF";
 
 var x_translate  = 80;
-var y_translate = 600;
+var y_translate = window.innerHeight - 60;
 
 var circles =  canvas.set();
 
@@ -211,10 +223,12 @@ var musicIcon = createButton("./src/music-icon.svg", music, music_color);
 var news = createButton("./src/newspaper-icon.svg", news, news_color);
 var audiobooks  = createButton("./src/audiobook-icon.svg", audiobooks, audiobooks_color);
 var comedy  = createButton("./src/theater-masks-icon.svg", comedy, comedy_color);
-musicIcon.translate(100,100);
-news.translate(100,200);
-audiobooks.translate(100,300);
-comedy.translate(100,400);
+
+var translate_button_x = screen_width - 300
+musicIcon.translate(translate_button_x,100);
+news.translate(translate_button_x,200);
+audiobooks.translate(translate_button_x,300);
+comedy.translate(translate_button_x,400);
 
 
 music.node.onclick = function () {
