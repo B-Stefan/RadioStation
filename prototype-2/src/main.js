@@ -42,7 +42,7 @@ Raphael.st.draggable = function() {
 
   var start = function(){
     var bbox = me.getBBox();
-    startx = bbox.x - 150 ;
+    startx = bbox.x - 0 ;
     starty = bbox.y + 50 ;
     console.log(this);
   }, move = function(dx, dy){
@@ -65,15 +65,15 @@ var news_color = "#0000FF";
 var comedy_color = "#ffff00";
 var audiobooks_color = "#BF5FFF";
 
-var x_translate  = 80;
-var y_translate = window.innerHeight - 60;
+var x_translate  = 150;
+var y_translate = window.innerHeight - 100;
 
 var circles =  canvas.set();
 
 var background = canvas.path().attr({
   "stroke": "#D3D3D3",
-  "stroke-width": 120,
-  arc: [0, 0, 360, 360, 100],
+  "stroke-width": 300,
+  arc: [0, 0, 360, 360, 200],
   after: undefined
 });
 background.translate(x_translate,y_translate);
@@ -84,15 +84,15 @@ background.translate(x_translate,y_translate);
  */
 var music = canvas.path().attr({
   "stroke": music_color,
-  "stroke-width": 120,
+  "stroke-width": 400,
   'stroke-opacity': 0.5,
-  arc: [0, 0, 0, 360, 100]
+  arc: [0, 0, 0, 360, 200]
 });
 music.translate(x_translate,y_translate);
 
 circles.push(music);
 music.animate({
-  arc: [0, 0, music_value, 360, 100],
+  arc: [0, 0, music_value, 360, 200],
 }, 1500, "bounce");
 
 /**
@@ -100,16 +100,16 @@ music.animate({
  */
 var news  = canvas.path().attr({
   "stroke": news_color,
-  "stroke-width": 120,
+  "stroke-width": 400,
   'stroke-opacity': 0.5,
-  arc: [0, 0, 0, 360, 100],
+  arc: [0, 0, 0, 360, 200],
 });
 circles.push(news);
 news.translate(x_translate,y_translate);
 news.rotate(music_value,0,0)
 
 news.animate({
-  arc: [0, 0, news_value, 360, 100]
+  arc: [0, 0, news_value, 360, 200]
 }, 1500, "bounce");
 
 
@@ -118,16 +118,16 @@ news.animate({
  */
 var comedy  = canvas.path().attr({
   "stroke": comedy_color,
-  "stroke-width": 120,
+  "stroke-width": 400,
   'stroke-opacity': 0.5,
-  arc: [0, 0, 0, 360, 100],
+  arc: [0, 0, 0, 360, 200],
 });
 circles.push(comedy);
 comedy.translate(x_translate,y_translate);
 comedy.rotate(music_value + news_value,0,0)
 
 comedy.animate({
-  arc: [0, 0, comedy_value, 360, 100]
+  arc: [0, 0, comedy_value, 360, 200]
 }, 1500, "bounce");
 
 
@@ -136,16 +136,16 @@ comedy.animate({
  */
 var audiobooks  = canvas.path().attr({
   "stroke": audiobooks_color,
-  "stroke-width": 120,
+  "stroke-width": 400,
   'stroke-opacity': 0.5,
-  arc: [0, 0, 0, 360, 100],
+  arc: [0, 0, 0, 360, 200],
 });
 circles.push(audiobooks);
 audiobooks.translate(x_translate,y_translate);
 audiobooks.rotate(comedy_value + music_value + news_value,0,0)
 
 audiobooks.animate({
-  arc: [0, 0, audiobooks_value, 360, 100]
+  arc: [0, 0, audiobooks_value, 360, 200]
 }, 1500, "bounce");
 
 
@@ -207,12 +207,15 @@ function increasePercent(start_circle) {
  */
 
 var pressInterval = null;
+var width = 120;
+var height = 120;
 
 function createButton(src, start_circle, color) {
   group  = canvas.set();
-  img = canvas.image(src, 180,0,50,50);
+
+  img = canvas.image(src, 0,0,width,height);
   bbox = img.getBBox();
-  circle = canvas.circle(bbox.x + bbox.width/2,bbox.y + bbox.height/2,bbox.height/2 +20);
+  circle = canvas.circle(bbox.x + bbox.width/2,bbox.y + bbox.height/2,bbox.height/2 + width*0.3);
   circle.attr({
     fill: color,
     'fill-opacity': 0.5,
@@ -250,11 +253,11 @@ var news = createButton("./src/newspaper-icon.svg", news, news_color);
 var audiobooks  = createButton("./src/audiobook-icon.svg", audiobooks, audiobooks_color);
 var comedy  = createButton("./src/theater-masks-icon.svg", comedy, comedy_color);
 
-var translate_button_x = screen_width - 300
+var translate_button_x = screen_width - 300;
 musicIcon.translate(translate_button_x,100);
-news.translate(translate_button_x,200);
-audiobooks.translate(translate_button_x,300);
-comedy.translate(translate_button_x,400);
+news.translate(translate_button_x,300);
+audiobooks.translate(translate_button_x,500);
+comedy.translate(translate_button_x,700);
 
 
 music.node.onclick = function () {
