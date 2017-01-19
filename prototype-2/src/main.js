@@ -221,7 +221,7 @@ var width = 120;
 var height = 120;
 
 function createButton(src, start_circle, color) {
-  var pressInterval = null;
+  var globalIdAnimationFrame = null;
   group  = canvas.set();
 
   img = canvas.image(src, 0,0,width,height);
@@ -238,16 +238,18 @@ function createButton(src, start_circle, color) {
   group.push(img);
   group.push(circle );
   group.startIncreasePercent = function () {
-    if (pressInterval){
-      clearInterval(pressInterval)
+    if (globalIdAnimationFrame){
+      window.cancelAnimationFrame(globalIdAnimationFrame)
     }
-    pressInterval = setInterval(function(){
+    function repeat() {
+      globalIdAnimationFrame = window.requestAnimationFrame(repeat);
       increasePercent(start_circle)
-    }, 20);
+    }
+    globalIdAnimationFrame = window.requestAnimationFrame(repeat)
   };
   group.stopIncreasePercent = function(){
-    if (pressInterval){
-      clearInterval(pressInterval)
+    if (globalIdAnimationFrame){
+      window.cancelAnimationFrame(globalIdAnimationFrame)
     }
   };
 
