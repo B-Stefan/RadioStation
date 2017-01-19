@@ -10,15 +10,15 @@ document.getElementById("canvas").setAttribute("width",screen_width );
 document.getElementById("canvas").setAttribute("height",screen_height);
 var canvas = Raphael("canvas", screen_width, screen_height);
 
-var music_value = 180;
+var music_value = 90;
 var news_value = 90;
-var comedy_value = 45;
-var audiobooks_value = 45;
+var comedy_value = 90;
+var audiobooks_value = 90;
 
-var music_color = "#f00";
-var news_color = "#0000FF";
-var comedy_color = "#ffff00";
-var audiobooks_color = "#BF5FFF";
+var music_color = "#C1272D";
+var news_color = "#F15A24";
+var comedy_color = "#009245";
+var audiobooks_color = "#0071BC";
 
 var x_translate  = 150;
 var y_translate = window.innerHeight - 100;
@@ -51,7 +51,6 @@ canvas.customAttributes.after = function(){
 
 };
 
-
 Raphael.st.draggable = function() {
   var me = this;
   var originalX,originalY
@@ -71,7 +70,6 @@ Raphael.st.draggable = function() {
             me.getBBox()
         )){
       me.startIncreasePercent()
-
     }
   }, end = function(){
     me.animate({transform: "t"+ originalX+ "," + originalY}, 500, "easeOut");
@@ -82,7 +80,8 @@ Raphael.st.draggable = function() {
 };
 
 var background = canvas.path().attr({
-  "stroke": "#D3D3D3",
+  "stroke": "#063024",
+    'opacity': 0,
   "stroke-width": 300,
   arc: [0, 0, 360, 360, 200],
   after: undefined
@@ -96,7 +95,7 @@ background.translate(x_translate,y_translate);
 var music = canvas.path().attr({
   "stroke": music_color,
   "stroke-width": 400,
-  'stroke-opacity': 0.5,
+  'stroke-opacity': 0.7,
   arc: [0, 0, 0, 360, 200]
 });
 music.translate(x_translate,y_translate);
@@ -112,7 +111,7 @@ music.animate({
 var news  = canvas.path().attr({
   "stroke": news_color,
   "stroke-width": 400,
-  'stroke-opacity': 0.5,
+  'stroke-opacity': 0.7,
   arc: [0, 0, 0, 360, 200],
 });
 circles.push(news);
@@ -130,7 +129,7 @@ news.animate({
 var comedy  = canvas.path().attr({
   "stroke": comedy_color,
   "stroke-width": 400,
-  'stroke-opacity': 0.5,
+  'stroke-opacity': 0.7,
   arc: [0, 0, 0, 360, 200],
 });
 circles.push(comedy);
@@ -148,8 +147,8 @@ comedy.animate({
 var audiobooks  = canvas.path().attr({
   "stroke": audiobooks_color,
   "stroke-width": 400,
-  'stroke-opacity': 0.5,
-  arc: [0, 0, 0, 360, 200],
+  'stroke-opacity': 0.7,
+  arc: [0, 0, 0, 360, 100],
 });
 circles.push(audiobooks);
 audiobooks.translate(x_translate,y_translate);
@@ -230,6 +229,8 @@ function createButton(src, start_circle, color) {
   circle.attr({
     fill: color,
     'fill-opacity': 0.5,
+      'stroke': '#FFFFFF',
+      'stroke-width': 2
   });
   img.toFront();
 
