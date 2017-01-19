@@ -173,28 +173,35 @@ audiobooks.attr({
 
 
 function increasePercent(start_circle) {
+  if(start_circle.attrs.arc[2]<=359){
   start_circle.attr({
     arc: [0, 0, start_circle.attrs.arc[2]+1, 360, 100]
-  });
+  });}
   var number_of_peaces = circles.length-1;
   circles.forEach(function (circle) {
     if (circle.attrs.arc[2] <= 0) {
       number_of_peaces = number_of_peaces -1
     }
   })
+
   var factor_decrease = 1 / number_of_peaces;
   var i = number_of_peaces;
+  var total_amount_circle = start_circle.attrs.after.attrs.arc[2]+start_circle.attrs.after.attrs.after.attrs.arc[2]+start_circle.attrs.after.attrs.after.attrs.after.attrs.arc[2];
+  var factor_decrease_percentage;
+  var rotate_factor = 1;
 
   var circle = start_circle;
   while (i>0){
     circle = circle.attrs.after;
+    factor_decrease_percentage = circle.attrs.arc[2]/total_amount_circle;
     if (circle.attrs.arc[2] > 0){
       circle.attr({
-        arc: [0, 0, circle.attrs.arc[2]-factor_decrease, 360, 100]
+        arc: [0, 0, circle.attrs.arc[2]-factor_decrease_percentage, 360, 100]
       });
     }
-    circle.rotate(i/number_of_peaces,0,0);
+    circle.rotate(rotate_factor,0,0);
     i--
+      rotate_factor -= factor_decrease_percentage;
   }
 
 
