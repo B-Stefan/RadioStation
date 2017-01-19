@@ -38,17 +38,21 @@ canvas.customAttributes.after = function(){
 
 Raphael.st.draggable = function() {
   var me = this;
+  var originalX,originalY
   var startx, starty;
 
   var start = function(){
     var bbox = me.getBBox();
-    startx = bbox.x - 0 ;
-    starty = bbox.y + 50 ;
+    startx = bbox.x  ;
+    starty = bbox.y  ;
+    originalX = bbox.x + 25;
+    originalY = bbox.y + 25 ;
     console.log(this);
   }, move = function(dx, dy){
     me.transform("t" + ( startx + dx ) + "," + (starty + dy));
-  }, end = function(){
 
+  }, end = function(){
+    me.animate({transform: "t"+ originalX+ "," + originalY}, 500, "easeOut");
   };
   // rstart and rmove are the resize functions;
   this.drag(move, start, end);
