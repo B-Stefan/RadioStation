@@ -83,8 +83,8 @@ Raphael.st.draggable = function() {
 
       },
       startFnc = function(x,y, mouseEvent) {
-        ox = mouseEvent.layerX - 200;
-        oy = mouseEvent.layerY;
+        //ox = mouseEvent.layerX - 200;
+        //oy = mouseEvent.layerY;
         console.log("start",x,y)
       },
       endFnc = function() {
