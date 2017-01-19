@@ -270,6 +270,19 @@ audiobooks.translate(translate_button_x,500);
 comedy.translate(translate_button_x,700);
 
 
-music.node.onclick = function () {
-  my_arc.rotate(10, 0,0)
+var drag = function (dx,dy) {
+  var velocity = Math.abs(dx+dy) / (screen_width+screen_height);
+  var factor = velocity * 10;
+  if ((dx + dy) < 0 ){
+    factor = factor * -1;
+  }
+  requestAnimationFrame(function(){circles.rotate(factor, 0,0)});
+
 };
+var start = function(){
+
+};
+var end = function(){
+
+};
+circles.drag(drag);
