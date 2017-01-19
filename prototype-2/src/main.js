@@ -269,10 +269,10 @@ news.translate(translate_button_x,300);
 audiobooks.translate(translate_button_x,500);
 comedy.translate(translate_button_x,700);
 
-
+var velocity = 0;
 var drag = function (dx,dy) {
-  var velocity = Math.abs(dx+dy) / (screen_width+screen_height);
-  var factor = velocity * 10;
+  velocity = Math.abs(dx+dy) / (screen_width+screen_height);
+  var factor = velocity * 15;
   if ((dx + dy) < 0 ){
     factor = factor * -1;
   }
@@ -284,5 +284,6 @@ var start = function(){
 };
 var end = function(){
 
+
 };
-circles.drag(drag);
+circles.drag(drag, start, end);
