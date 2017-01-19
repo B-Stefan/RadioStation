@@ -79,15 +79,18 @@ Raphael.st.draggable = function() {
         lx = dx + ox;
         ly = dy + oy;
         me.transform('t' + lx + ',' + ly);
+        console.log("move",x,dy)
 
       },
       startFnc = function(x,y, mouseEvent) {
         ox = mouseEvent.layerX - 200;
         oy = mouseEvent.layerY;
+        console.log("start",x,dy)
       },
       endFnc = function() {
         ox = lx;
         oy = ly;
+        console.log("end",x,dy)
       };
 
   this.drag(moveFnc, startFnc, endFnc);
