@@ -42,8 +42,8 @@ Raphael.st.draggable = function() {
 
   var start = function(){
     var bbox = me.getBBox();
-    startx = bbox.x;
-    starty = bbox.y;
+    startx = bbox.x - 150 ;
+    starty = bbox.y + 50 ;
     console.log(this);
   }, move = function(dx, dy){
     me.transform("t" + ( startx + dx ) + "," + (starty + dy));
