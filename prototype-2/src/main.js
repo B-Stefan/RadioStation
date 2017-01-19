@@ -170,7 +170,7 @@ audiobooks.attr({
 function increasePercent(start_circle) {
   if(start_circle.attrs.arc[2]<=359){
   start_circle.attr({
-    arc: [0, 0, start_circle.attrs.arc[2]+1, 360, 100]
+    arc: [0, 0, start_circle.attrs.arc[2]+1, 360, 200]
   });}
   var number_of_peaces = circles.length-1;
   circles.forEach(function (circle) {
@@ -191,7 +191,7 @@ function increasePercent(start_circle) {
     factor_decrease_percentage = circle.attrs.arc[2]/total_amount_circle;
     if (circle.attrs.arc[2] > 0){
       circle.attr({
-        arc: [0, 0, circle.attrs.arc[2]-factor_decrease_percentage, 360, 100]
+        arc: [0, 0, circle.attrs.arc[2]-factor_decrease_percentage, 360, 200]
       });
     }
     circle.rotate(rotate_factor,0,0);
@@ -253,7 +253,7 @@ var news = createButton("./src/newspaper-icon.svg", news, news_color);
 var audiobooks  = createButton("./src/audiobook-icon.svg", audiobooks, audiobooks_color);
 var comedy  = createButton("./src/theater-masks-icon.svg", comedy, comedy_color);
 
-var translate_button_x = screen_width - 300;
+var translate_button_x = screen_width - 200;
 musicIcon.translate(translate_button_x,100);
 news.translate(translate_button_x,300);
 audiobooks.translate(translate_button_x,500);
