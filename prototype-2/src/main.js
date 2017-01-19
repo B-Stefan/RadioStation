@@ -45,8 +45,12 @@ Raphael.st.draggable = function() {
         lx = dx + ox;
         ly = dy + oy;
         me.transform('t' + lx + ',' + ly);
+
       },
-      startFnc = function() {},
+      startFnc = function(x,y, mouseEvent) {
+        ox = mouseEvent.layerX - 200;
+        oy = mouseEvent.layerY;
+      },
       endFnc = function() {
         ox = lx;
         oy = ly;
