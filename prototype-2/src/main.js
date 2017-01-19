@@ -6,10 +6,26 @@ var w = window,
     screen_height = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
 
-
 document.getElementById("canvas").setAttribute("width",screen_width );
 document.getElementById("canvas").setAttribute("height",screen_height);
 var canvas = Raphael("canvas", screen_width, screen_height);
+
+var music_value = 180;
+var news_value = 90;
+var comedy_value = 45;
+var audiobooks_value = 45;
+
+var music_color = "#f00";
+var news_color = "#0000FF";
+var comedy_color = "#ffff00";
+var audiobooks_color = "#BF5FFF";
+
+var x_translate  = 150;
+var y_translate = window.innerHeight - 100;
+
+var circles =  canvas.set();
+
+
 canvas.customAttributes.arc = function (xloc, yloc, value, total, R) {
   var alpha = 360 / total * value,
       a = (90 - alpha) * Math.PI / 180,
@@ -45,34 +61,25 @@ Raphael.st.draggable = function() {
     var bbox = me.getBBox();
     startx = bbox.x  ;
     starty = bbox.y  ;
-    originalX = bbox.x + 25;
-    originalY = bbox.y + 25 ;
+    originalX = bbox.x + 30;
+    originalY = bbox.y + 38 ;
     console.log(this);
   }, move = function(dx, dy){
     me.transform("t" + ( startx + dx ) + "," + (starty + dy));
+    if (Raphael.isBBoxIntersect(
+            circles.getBBox(),
+            me.getBBox()
+        )){
+      me.startIncreasePercent()
 
+    }
   }, end = function(){
     me.animate({transform: "t"+ originalX+ "," + originalY}, 500, "easeOut");
+    me.stopIncreasePercent()
   };
   // rstart and rmove are the resize functions;
   this.drag(move, start, end);
 };
-
-
-var music_value = 180;
-var news_value = 90;
-var comedy_value = 45;
-var audiobooks_value = 45;
-
-var music_color = "#f00";
-var news_color = "#0000FF";
-var comedy_color = "#ffff00";
-var audiobooks_color = "#BF5FFF";
-
-var x_translate  = 150;
-var y_translate = window.innerHeight - 100;
-
-var circles =  canvas.set();
 
 var background = canvas.path().attr({
   "stroke": "#D3D3D3",
@@ -210,11 +217,11 @@ function increasePercent(start_circle) {
  *
  */
 
-var pressInterval = null;
 var width = 120;
 var height = 120;
 
 function createButton(src, start_circle, color) {
+  var pressInterval = null;
   group  = canvas.set();
 
   img = canvas.image(src, 0,0,width,height);
@@ -230,23 +237,20 @@ function createButton(src, start_circle, color) {
 
   group.push(img);
   group.push(circle );
-
-  group.mousedown(function () {
+  group.startIncreasePercent = function () {
     if (pressInterval){
       clearInterval(pressInterval)
     }
     pressInterval = setInterval(function(){
       increasePercent(start_circle)
     }, 20);
-
-  });
-  group.mouseup(function () {
+  };
+  group.stopIncreasePercent = function(){
     if (pressInterval){
       clearInterval(pressInterval)
-    }else {
-      console.error("Wrong state")
     }
-  });
+  };
+
   group.draggable();
 
   return group;
