@@ -148,7 +148,7 @@ var audiobooks  = canvas.path().attr({
   "stroke": audiobooks_color,
   "stroke-width": 400,
   'stroke-opacity': 0.7,
-  arc: [0, 0, 0, 360, 100],
+  arc: [0, 0, 0, 360, 200],
 });
 circles.push(audiobooks);
 audiobooks.translate(x_translate,y_translate);
@@ -216,8 +216,8 @@ function increasePercent(start_circle) {
  *
  */
 
-var width = 120;
-var height = 120;
+var width = 70;
+var height = 70;
 
 function createButton(src, start_circle, color) {
   var globalIdAnimationFrame = null;
@@ -264,11 +264,11 @@ var news = createButton("./src/newspaper-icon.svg", news, news_color);
 var audiobooks  = createButton("./src/audiobook-icon.svg", audiobooks, audiobooks_color);
 var comedy  = createButton("./src/theater-masks-icon.svg", comedy, comedy_color);
 
-var translate_button_x = screen_width - 200;
+var translate_button_x = screen_width - 150;
 musicIcon.translate(translate_button_x,100);
-news.translate(translate_button_x,300);
-audiobooks.translate(translate_button_x,500);
-comedy.translate(translate_button_x,700);
+news.translate(translate_button_x,230);
+audiobooks.translate(translate_button_x,360);
+comedy.translate(translate_button_x,490);
 
 var velocity = 0;
 var drag = function (dx,dy) {
